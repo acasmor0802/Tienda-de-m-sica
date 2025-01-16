@@ -1,3 +1,3 @@
 # Tienda de música POP
-![LOGO]()
+![LOGO](principal\assets\logo-modified.png)
 ---
