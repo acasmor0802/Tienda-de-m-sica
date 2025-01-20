@@ -1,9 +1,10 @@
+
 /* Variables */
 :root {
     --color-principal: #ECE4B7;
     --color-secundario: #45503B;
     --color-acento: #8CC681;
-    --color-hover: #45503B;
+    --color-hover: #8CC681;
     --fuente-principal: 'Arial', sans-serif;
     --tamano-iconos: 2rem;
     --espaciado-base: 1rem;
@@ -169,7 +170,7 @@ ul, ol, li {
     display: flex;
     padding: 1rem 0;
     scrollbar-width: thin;
-    scrollbar-color: var(--color-hover) var(--color-principal);
+    scrollbar-color: var(--color-secundario) var(--color-principal);
 }
 
 .novedades__vista::-webkit-scrollbar {
@@ -221,6 +222,46 @@ ul, ol, li {
     color: var(--color-secundario);
 }
 
+/* Sección 2x2 */
+.grid-section {
+    padding: 2rem;
+    text-align: center;
+    background-color: #f4f4f4;
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.item {
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.item img {
+    max-width: 100%;
+    border-radius: 8px;
+}
+
+.item h3 {
+    margin: 10px 0;
+}
+
+.item p {
+    color: #555;
+}
+
+.item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 /* Media Queries */
 @media (max-width: 43.8rem) {
     .header {
@@ -260,5 +301,9 @@ ul, ol, li {
     .novedades__articulo {
         flex: 0 0 100%;
         max-width: 100%;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
     }
 }
