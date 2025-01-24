@@ -8,6 +8,7 @@
     --spacing-base: 1rem;
     --text-base-size: 1rem;
     --font-weight-bold: 600;
+    --image-size: 20rem;
 }
 
 /* General styles */
@@ -104,11 +105,12 @@ ul, ol, li {
     padding: 1rem;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    text-align: center;
 }
 
 .novedades__image {
-    width: 100%;
+    width: var(--image-size); 
+    height: var(--image-size); 
     border-radius: 4px;
     margin-bottom: 1rem;
 }
@@ -222,7 +224,7 @@ ul, ol, li {
 }
 
 .grid-section__description {
-    color: #555;
+    color: var(--color-secondary);
     margin: 0;
 }
 
