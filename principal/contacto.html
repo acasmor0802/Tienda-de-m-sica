@@ -33,74 +33,64 @@
                 </ul>
             </nav>
         </header>
-
-        <main class="main">
-            <!-- Sección Novedades -->
-            <section class="novedades">
-                <h2 class="novedades__title">Novedades</h2>
-                <div class="novedades__list" role="list">
-                    <article class="novedades__item" role="listitem">
-                        <img src="assets/nayeon.jpeg" alt="nayeon na" class="novedades__image">
-                        <h3 class="novedades__name">nayeon NA</h3>
-                        <p class="novedades__description">CD de Nayeon del grupo TWICE</p>
-                    </article>
-                    <article class="novedades__item" role="listitem">
-                        <img src="assets/aespa whiplash.jpeg" alt="aespa whiplash" class="novedades__image">
-                        <h3 class="novedades__name">whiplash</h3>
-                        <p class="novedades__description">CD de aespa</p>
-                    </article>
-                    <article class="novedades__item" role="listitem">
-                        <img src="assets/bnd who.jpeg" alt="bnd who" class="novedades__image">
-                        <h3 class="novedades__name">who</h3>
-                        <p class="novedades__description">CD de boynextdoor</p>
-                    </article>
-                    <article class="novedades__item" role="listitem">
-                        <img src="assets/skz ate.jpeg" alt="skz ate" class="novedades__image">
-                        <h3 class="novedades__name">ATE</h3>
-                        <p class="novedades__description">CD de Stray Kids</p>
-                    </article>
-                    <article class="novedades__item" role="listitem">
-                        <img src="assets/wendy.jpeg" alt="wendy wish you hell" class="novedades__image">
-                        <h3 class="novedades__name">wish you hell</h3>
-                        <p class="novedades__description">CD de Wendy del grupo Red Velvet</p>
-                    </article>
-                    <article class="novedades__item" role="listitem">
-                        <img src="assets/nmixx entwurf.jpeg" alt="nmixx entwurf" class="novedades__image">
-                        <h3 class="novedades__name">ENTWURF</h3>
-                        <p class="novedades__description">CD de NMIXX</p>
-                    </article>
-                </div>
+        <main>
+            <form class="form" action="#" method="POST">
+                <h2 class="form__title">Formulario de Contacto</h2>
+        
+                <label for="nombre" class="form__label">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" class="form__input" required>
+        
+                <label for="apellidos" class="form__label">Apellidos:</label>
+                <input type="text" id="apellidos" name="apellidos" class="form__input" required>
+        
+                <label for="telefono" class="form__label">Número Telefónico:</label>
+                <input type="tel" id="telefono" name="telefono" class="form__input" pattern="[0-9]{9}" title="Debe contener 9 números" required>
+        
+                <label for="correo" class="form__label">Correo Electrónico:</label>
+                <input type="email" id="correo" name="correo" class="form__input" required>
+        
+                <label for="direccion" class="form__label">Dirección:</label>
+                <input type="text" id="direccion" name="direccion" class="form__input" required>
+        
+                <label for="comentarios" class="form__label">Comentarios:</label>
+                <textarea id="comentarios" name="comentarios" class="form__textarea" rows="4" required></textarea>
+        
+                <button type="submit" class="form__button">Enviar</button>
+            </form>
+            <section class="comentarios">
+                <h2 class="comentarios__titulo">Reseñas de Clientes</h2>
+            
+                <article class="comentarios__reseña">
+                    <header class="comentarios__header">
+                        <figure class="comentarios__perfil">
+                            <img src="perfil1.jpg" alt="Perfil de Juan Pérez" class="comentarios__imagen">
+                            <figcaption class="comentarios__nombre">Juan Pérez</figcaption>
+                        </figure>
+                    </header>
+                    <p class="comentarios__texto">¡Excelente servicio! La atención fue rápida y muy profesional. Definitivamente volveré.</p>
+                </article>
+            
+                <article class="comentarios__reseña">
+                    <header class="comentarios__header">
+                        <figure class="comentarios__perfil">
+                            <img src="perfil2.jpg" alt="Perfil de María López" class="comentarios__imagen">
+                            <figcaption class="comentarios__nombre">María López</figcaption>
+                        </figure>
+                    </header>
+                    <p class="comentarios__texto">Me encantó la experiencia. Todo fue perfecto desde el inicio hasta el final.</p>
+                </article>
+            
+                <article class="comentarios__reseña">
+                    <header class="comentarios__header">
+                        <figure class="comentarios__perfil">
+                            <img src="assets/aespa armageddon.jpeg" alt="Perfil de Carlos García" class="comentarios__imagen">
+                            <figcaption class="comentarios__nombre">Carlos García</figcaption>
+                        </figure>
+                    </header>
+                    <p class="comentarios__texto">Un lugar muy acogedor y el personal es muy amable. ¡Recomendado!</p>
+                </article>
             </section>
-
-            <!-- Sección 2x2 Grid -->
-            <section class="grid-section">
-                <header class="grid-section__header">
-                    <h2 class="grid-section__title">Última hora</h2>
-                </header>
-                <div class="grid-section__grid">
-                    <article class="grid-section__item">
-                        <img src="assets/Somi noticia.jpg" alt="Imagen 1" class="grid-section__image">
-                        <h3 class="grid-section__name">Somi en Cadiz</h3>
-                        <p class="grid-section__description">La famosa cantante y presentadora Somi llega a Cadiz para cocinar por las calles en un reconocido programa de cocina coreano.</p>
-                    </article>
-                    <article class="grid-section__item">
-                        <img src="assets/Taeyeon noticia.jpg" alt="Imagen 2" class="grid-section__image">
-                        <h3 class="grid-section__name">Taeyeon rompe ventas</h3>
-                        <p class="grid-section__description">La reconocida cantante solista Taeyeon hace sold out en todos los discos de su ultimo album "Letter to myself" en cuestion de horas.</p>
-                    </article>
-                    <article class="grid-section__item">
-                        <img src="assets/MuBank noticia.png" alt="Imagen 3" class="grid-section__image">
-                        <h3 class="grid-section__name">Music Bank de nuevo</h3>
-                        <p class="grid-section__description">Tras el exito del Music Bank en el verano pasado, se anuncia una nueva edicion del mismo para este verano.</p>
-                    </article>
-                    <article class="grid-section__item">
-                        <img src="assets/Stray kids noticia.jpg" alt="Imagen 4" class="grid-section__image">
-                        <h3 class="grid-section__name">Stray kids en España</h3>
-                        <p class="grid-section__description">El anuncio del concierto de Stray Kids en Madrid causa revuelo tras agotarse todas las entradas en menos de 1 hora.</p>
-                    </article>
-                </div>
-            </section>
-
+            
             <section class="contact-fisico-section">
                 <article class="contact-fisico-section__info">
                     <h2>También nos puedes contactar físicamente en nuestra tienda</h2>
