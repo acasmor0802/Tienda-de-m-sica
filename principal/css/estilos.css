@@ -173,6 +173,10 @@ ul, ol, li {
     text-align: center;
 }
 
+.productos__item:hover {
+    cursor: pointer;
+}
+
 .productos__image {
     width: var(--image-size);
     height: var(--image-size);
