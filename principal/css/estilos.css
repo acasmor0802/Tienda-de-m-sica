@@ -21,6 +21,10 @@ body {
     background-color: var(--color-background);
 }
 
+h1{
+    color: var(--color-secondary);
+}
+
 h2{
     color: var(--color-secondary);
 }
@@ -382,6 +386,26 @@ ul, ol, li {
     border: 1px solid var(--color-border);
     border-radius: 8px; 
 }
+
+
+/* Descripcion */
+.descripcion-about {
+    max-width: 50%;
+    margin: 0 auto;
+    background-color: var(--color-primary);
+    border-radius: 5%; 
+    box-shadow: 0 0.125em 0.625em rgba(0, 0, 0, 0.1); 
+    padding: 1.25%; 
+    margin-top: 2rem;
+    margin-bottom: 2rem; 
+}
+
+.descripcion-about__title {
+    text-align: center;
+}
+
+/* EQUIPO */
+
 
 /* Footer */
 .footer {
