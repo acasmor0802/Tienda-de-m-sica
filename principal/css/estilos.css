@@ -27,6 +27,7 @@
     /* Tamaños de imágenes */
     --image-size-small: 5rem; /* Tamaño pequeño: íconos, fotos de perfil */
     --image-size-medium: 70%; /* Tamaño mediano: imágenes de secciones */
+    --image-size-noticias: 20rem;/* Tamaño noticias: imágenes de secciones */
 }
 
 
@@ -38,7 +39,7 @@ body {
     background-color: var(--color-background);
 }
 
-h1, h2, h3, p {
+h1, h2, h3, p, figcaption {
     color: var(--color-secondary);
 }
 
@@ -235,8 +236,8 @@ ul, ol, li {
 }
 
 .grid-section__image {
-    width: var(--image-size-medium); /* Tamaño mediano */
-    height: var(--image-size-medium);
+    width: var(--image-size-noticias); /* Tamaño mediano */
+    height: var(--image-size-noticias);
     border-radius: var(--radius);
 }
 
@@ -338,6 +339,7 @@ ul, ol, li {
     align-items: center;
     margin-left: 0;
     padding-left: 0;
+    width: 100%;
 }
 
 .comentarios__imagen {
@@ -485,12 +487,13 @@ ul, ol, li {
 
 .team-section__image-container {
     width: calc(var(--image-size-small) * 2); 
-    height: calc(var(--image-size-small) * 2); 
+    height: calc(var(--image-size-small) * 2);
 }
 
 .team-section__icon {
     width: 100%; 
     height: auto; 
+    border-radius: 50%; 
 }
 
 .team-section__name {
@@ -509,10 +512,28 @@ ul, ol, li {
 .grid-section__image,
 .team-section__icon {
     max-width: 100%; /* Asegura que la imagen no se salga del contenedor */
-    height: auto; /* Mantiene la proporción de la imagen */
 }
 /* Estilos responsivos */
 @media (max-width: 1200px) {
+    .novedades__list {
+        gap: 1.5rem; /* Espacio entre tarjetas */
+        padding: 1rem; /* Ajustar el espacio interno de la lista */
+        height: auto;
+    }
+    .novedades__item {
+        max-width: 100%; /* Evitar que las tarjetas se desborden */
+        margin: 0 auto; /* Centrar las tarjetas */
+
+    }
+
+    .novedades__image {
+        width: 100%; /* Imagen ocupa todo el ancho del contenedor */
+        max-width: 20rem; /* Limitar el ancho máximo */
+        height: auto; /* Ajustar altura proporcionalmente */
+        object-fit: cover; /* Recortar sin deformar */
+        margin: 0 auto 1rem; /* Centrar imagen y espaciado inferior */
+    }
+    
     .productos__column {
         flex: 1 1 48%; /* 2 columnas */
         margin: 0.5rem; /* Ajuste del espacio entre los productos */
@@ -530,17 +551,14 @@ ul, ol, li {
         margin: 1rem 0; /* Ajuste del espacio entre los productos */
     }
 
+    .header {
+        flex-direction: row; /* Mantener en fila en dispositivos como tablets */
+        justify-content: space-between;
+    }
 
-    @media (max-width: 768px) {
-        .header {
-            flex-direction: row; /* Mantener en fila en dispositivos como tablets */
-            justify-content: space-between;
-        }
-    
-        .header__nav-list {
-            flex-direction: row; /* Enlaces en fila */
-            gap: 1rem; /* Espacio entre enlaces */
-        }
+    .header__nav-list {
+        flex-direction: row; /* Enlaces en fila */
+        gap: 1rem; /* Espacio entre enlaces */
     }
 
     .form {
@@ -570,6 +588,8 @@ ul, ol, li {
     .team-section__item {
         margin: 1rem 0; /* Ajustar el margen entre artículos */
     }
+
+
 }
 
 @media (max-width: 480px) {
@@ -598,56 +618,50 @@ ul, ol, li {
     .team-section__name {
         font-size: 1.2rem; /* Ajustar el tamaño del nombre */
     }
-}
-
-/* Estilos para pantallas más grandes */
-@media (min-width: 1201px) {
-    body {
-        font-size: 1.2rem; /* Incrementar el tamaño base del texto */
-        line-height: 1.8; /* Mejorar la legibilidad */
-    }
-
-    .header {
-        padding: 2rem 4rem; /* Aumentar el espaciado interno */
-    }
-
-    .header__logo-name {
-        font-size: 2rem; /* Hacer el logo más visible */
-    }
-
     .novedades__list {
-        gap: 2rem; /* Incrementar el espacio entre los elementos */
+        flex-direction: column; /* Cambiar a columna en pantallas pequeñas */
+        gap: 1.5rem; /* Espacio entre tarjetas */
+        padding: 1rem; /* Ajustar el espacio interno de la lista */
+        height: auto;
     }
 
-    .productos__image {
-        width: calc(var(--image-size-medium) * 1.2); /* Hacer las imágenes un poco más grandes */
-        height: calc(var(--image-size-medium) * 1.2);
+    .novedades__item {
+        flex: 1 1 100%; /* Cada tarjeta ocupa el 100% del ancho */
+        max-width: 100%; /* Evitar que las tarjetas se desborden */
+        margin: 0 auto; /* Centrar las tarjetas */
+
     }
 
-    .form {
-        width: 60%; /* Ampliar el formulario */
-        padding: 2rem;
+    .novedades__image {
+        width: 100%; /* Imagen ocupa todo el ancho del contenedor */
+        max-width: 20rem; /* Limitar el ancho máximo */
+        height: auto; /* Ajustar altura proporcionalmente */
+        object-fit: cover; /* Recortar sin deformar */
+        margin: 0 auto 1rem; /* Centrar imagen y espaciado inferior */
+    }
+}
+@media (max-width: 480px) {
+    .grid-section__grid {
+        grid-template-columns: 1fr; /* Una columna para móviles */
+        gap: 1rem; /* Reducir el espacio entre los elementos */
+        padding: 1rem; /* Ajustar el espacio interno de la sección */
     }
 
-    .contact-fisico-section {
-        padding: 3rem 6rem; /* Aumentar el espaciado general */
+    .grid-section__item {
+        max-width: 100%; /* Ocupa todo el ancho disponible */
+        margin: 0 auto; /* Centrar los elementos */
+        padding: 1rem; /* Ajustar el espaciado interno */
     }
 
-    .team-section__profiles {
-        justify-content: center; /* Centrar el contenido del equipo */
-        gap: 2rem; /* Aumentar el espaciado entre perfiles */
+    .grid-section__image {
+        width: 100%; /* Imagen ocupa todo el ancho del contenedor */
+        height: auto; /* Ajustar la altura proporcionalmente */
+        object-fit: cover; /* Evitar que se deforme */
+        margin-bottom: 1rem; /* Espaciado inferior */
     }
 
-    .team-section__item {
-        max-width: 25%; /* Permitir más perfiles visibles al mismo tiempo */
-    }
-
-    .footer {
-        padding: 3rem 6rem; /* Más espacio en el footer */
-    }
-
-    .footer__socials-icon {
-        width: calc(var(--image-size-small) * 1.5); /* Iconos más grandes en redes sociales */
-        height: calc(var(--image-size-small) * 1.5);
+    .grid-section__title {
+        font-size: 1.5rem; /* Reducir el tamaño del título */
+        margin-bottom: 1.5rem; /* Espaciado inferior */
     }
 }
