@@ -130,6 +130,10 @@ ul, ol, li {
     text-align: center;
 }
 
+.novedades__item:hover {
+    cursor: pointer ;
+}
+
 .novedades__image {
     width: var(--image-size-medium); /* Tamaño mediano */
     height: var(--image-size-medium);
@@ -613,11 +617,6 @@ ul, ol, li {
 
     .novedades__list {
         gap: 2rem; /* Incrementar el espacio entre los elementos */
-    }
-
-    .novedades__item {
-        flex: 0 0 calc(25% - 2rem); /* Mostrar más elementos en línea */
-        max-width: calc(25% - 2rem);
     }
 
     .productos__image {
