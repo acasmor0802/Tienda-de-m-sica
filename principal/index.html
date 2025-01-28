@@ -4,15 +4,19 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio</title>
+        <!-- Enlace al archivo CSS principal -->
         <link rel="stylesheet" href="css/estilos.css">
     </head>
 
     <body>
+        <!-- Encabezado principal con logo y navegación -->
         <header class="header">
             <a href="index.html" class="header__logo" aria-label="Página de inicio">
+                <!-- Imagen del logo y título de la página -->
                 <img src="assets/logo-modified.png" alt="Logo de Ksic" class="header__logo-img">
                 <h1 class="header__logo-name">Ksic</h1>
             </a>
+            <!-- Navegación principal -->
             <nav class="header__nav" aria-label="Navegación principal">
                 <ul class="header__nav-list">
                     <li class="header__nav-item">
@@ -32,7 +36,7 @@
         </header>
 
         <main class="main">
-            <!-- Sección Novedades -->
+            <!-- Sección de novedades con los productos más recientes -->
             <section class="novedades">
                 <h2 class="novedades__title">Novedades</h2>
                 <div class="novedades__list">
@@ -56,7 +60,7 @@
                         <h3 class="novedades__name">SKZ ATE</h3>
                         <p class="novedades__description">16.99€</p>
                     </article>
-                    <article class="novedades__item" >
+                    <article class="novedades__item">
                         <img src="assets/wendy.jpeg" alt="wendy wish you hell" class="novedades__image">
                         <h3 class="novedades__name">Wendy Wish you hell</h3>
                         <p class="novedades__description">29.99€</p>
@@ -69,27 +73,31 @@
                 </div>
             </section>
 
-            <!-- Sección 2x2 Grid -->
+            <!-- Sección con diseño 2x2 grid para mostrar noticias recientes -->
             <section class="grid-section">
                 <header class="grid-section__header">
                     <h2 class="grid-section__title">Última hora</h2>
                 </header>
                 <div class="grid-section__grid">
+                    <!-- Noticia sobre Somi -->
                     <article class="grid-section__item">
                         <img src="assets/Sominoticia.jpg" alt="Imagen 1" class="grid-section__image">
                         <h3 class="grid-section__name">Somi en Cadiz</h3>
                         <p class="grid-section__description">La famosa cantante y presentadora Somi llega a Cadiz para cocinar por las calles en un reconocido programa de cocina coreano.</p>
                     </article>
+                    <!-- Noticia sobre Taeyeon -->
                     <article class="grid-section__item">
                         <img src="assets/Taeyeonnoticia.jpg" alt="Imagen 2" class="grid-section__image">
                         <h3 class="grid-section__name">Taeyeon rompe ventas</h3>
                         <p class="grid-section__description">La reconocida cantante solista Taeyeon hace sold out en todos los discos de su ultimo album "Letter to myself" en cuestion de horas.</p>
                     </article>
+                    <!-- Noticia sobre Music Bank -->
                     <article class="grid-section__item">
                         <img src="assets/MuBanknoticia.png" alt="Imagen 3" class="grid-section__image">
                         <h3 class="grid-section__name">Music Bank de nuevo</h3>
                         <p class="grid-section__description">Tras el exito del Music Bank en el verano pasado, se anuncia una nueva edicion del mismo para este verano.</p>
                     </article>
+                    <!-- Noticia sobre Stray Kids -->
                     <article class="grid-section__item">
                         <img src="assets/Straykidsnoticia.jpg" alt="Imagen 4" class="grid-section__image">
                         <h3 class="grid-section__name">Stray kids en España</h3>
@@ -98,6 +106,7 @@
                 </div>
             </section>
 
+            <!-- Sección para contacto físico con dirección, teléfono y mapa -->
             <section class="contact-fisico-section">
                 <article class="contact-fisico-section__info">
                     <h2>También nos puedes contactar físicamente en nuestra tienda</h2>
@@ -110,6 +119,7 @@
                 </article>
                 <article class="contact-fisico-section__map">
                     <h2>Nuestra Ubicación</h2>
+                    <!-- Mapa incrustado desde Google Maps -->
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12680.123456789012!2d-6.293202!3d36.516123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0b1c1e2e2e2e2e3%3A0x1234567890abcdef!2sInstituto%20Rafael%20Alberti!5e0!3m2!1ses!2ses!4v1633031234567!5m2!1ses!2ses" 
                         title="Ubicación de Nuestra Tienda"
@@ -119,6 +129,7 @@
             </section>
         </main>
 
+        <!-- Pie de página con enlaces y redes sociales -->
         <footer class="footer">
             <nav class="footer__nav" aria-label="Navegación principal del footer">
                 <ul class="footer__list">

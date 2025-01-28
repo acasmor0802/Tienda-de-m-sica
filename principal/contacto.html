@@ -4,12 +4,15 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Inicio</title>
+        <!-- Enlace al archivo CSS principal -->
         <link rel="stylesheet" href="css/estilos.css">
     </head>
 
     <body>
+        <!-- Encabezado principal con logo y navegación -->
         <header class="header">
             <a href="index.html" class="header__logo" aria-label="Página de inicio">
+                <!-- Imagen del logo y título de la página -->
                 <img src="assets/logo-modified.png" alt="Logo de Ksic" class="header__logo-img">
                 <h1 class="header__logo-name">Ksic</h1>
             </a>
@@ -30,33 +33,45 @@
                 </ul>
             </nav>
         </header>
+
         <main>
+            <!-- Formulario de contacto -->
             <form class="form" action="#" method="POST">
                 <h2 class="form__title">Formulario de Contacto</h2>
-        
+
+                <!-- Campo para el nombre -->
                 <label for="nombre" class="form__label">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" class="form__input" required>
-        
+
+                <!-- Campo para los apellidos -->
                 <label for="apellidos" class="form__label">Apellidos:</label>
                 <input type="text" id="apellidos" name="apellidos" class="form__input" required>
-        
+
+                <!-- Campo para el número telefónico -->
                 <label for="telefono" class="form__label">Número Telefónico:</label>
                 <input type="tel" id="telefono" name="telefono" class="form__input" pattern="[0-9]{9}" title="Debe contener 9 números" required>
-        
+
+                <!-- Campo para el correo electrónico -->
                 <label for="correo" class="form__label">Correo Electrónico:</label>
                 <input type="email" id="correo" name="correo" class="form__input" required>
-        
+
+                <!-- Campo para la dirección -->
                 <label for="direccion" class="form__label">Dirección:</label>
                 <input type="text" id="direccion" name="direccion" class="form__input" required>
-        
+
+                <!-- Campo para comentarios adicionales -->
                 <label for="comentarios" class="form__label">Comentarios:</label>
                 <textarea id="comentarios" name="comentarios" class="form__textarea" rows="4" required></textarea>
-        
+
+                <!-- Botón para enviar el formulario -->
                 <button type="submit" class="form__button">Enviar</button>
             </form>
+
+            <!-- Sección de comentarios de clientes -->
             <section class="comentarios">
                 <h2 class="comentarios__titulo">Reseñas de Clientes</h2>
-            
+
+                <!-- Primer comentario -->
                 <article class="comentarios__reseña">
                     <header class="comentarios__header">
                         <figure class="comentarios__perfil">
@@ -66,28 +81,31 @@
                     </header>
                     <p class="comentarios__texto">¡Excelente servicio! La atención fue rápida y muy profesional. Definitivamente volveré.</p>
                 </article>
-            
+
+                <!-- Segundo comentario -->
                 <article class="comentarios__reseña">
                     <header class="comentarios__header">
                         <figure class="comentarios__perfil">
                             <img src="assets/felix.jpg" alt="Perfil de felix" class="comentarios__imagen">
-                            <figcaption class="comentarios__nombre">felix Jose</figcaption>
+                            <figcaption class="comentarios__nombre">Felix Jose</figcaption>
                         </figure>
                     </header>
                     <p class="comentarios__texto">Me encantó la experiencia. Todo fue perfecto desde el inicio hasta el final.</p>
                 </article>
-            
+
+                <!-- Tercer comentario -->
                 <article class="comentarios__reseña">
                     <header class="comentarios__header">
                         <figure class="comentarios__perfil">
                             <img src="assets/winter.png" alt="Perfil de winter" class="comentarios__imagen">
-                            <figcaption class="comentarios__nombre">winter lopez</figcaption>
+                            <figcaption class="comentarios__nombre">Winter Lopez</figcaption>
                         </figure>
                     </header>
                     <p class="comentarios__texto">Un lugar muy acogedor y el personal es muy amable. ¡Recomendado!</p>
                 </article>
             </section>
 
+            <!-- Sección de contacto físico con mapa -->
             <section class="contact-fisico-section">
                 <article class="contact-fisico-section__info">
                     <h2>También nos puedes contactar físicamente en nuestra tienda</h2>
@@ -100,6 +118,7 @@
                 </article>
                 <article class="contact-fisico-section__map">
                     <h2>Nuestra Ubicación</h2>
+                    <!-- Mapa incrustado desde Google Maps -->
                     <iframe 
                         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d12680.123456789012!2d-6.293202!3d36.516123!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd0b1c1e2e2e2e2e3%3A0x1234567890abcdef!2sInstituto%20Rafael%20Alberti!5e0!3m2!1ses!2ses!4v1633031234567!5m2!1ses!2ses" 
                         title="Ubicación de Nuestra Tienda"
@@ -109,6 +128,7 @@
             </section>
         </main>
 
+        <!-- Pie de página con navegación y redes sociales -->
         <footer class="footer">
             <nav class="footer__nav" aria-label="Navegación principal del footer">
                 <ul class="footer__list">
