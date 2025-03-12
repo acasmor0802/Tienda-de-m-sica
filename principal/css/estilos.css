@@ -7,6 +7,11 @@
     --color-background: #f4f4f4; /* Color de fondo general */
     --color-border: #ccc; /* Color para bordes */
 
+    --color-primary-oscuro: #2d2d2d;
+    --color-secondary-oscuro: #ECE4B7;
+    --color-background-oscuro: #1a1a1a;
+    --color-border-oscuro: #555;
+
     /* Tipografía */
     --font-main: 'Arial', sans-serif; /* Fuente principal */
     --font-weight-bold: 600; /* Peso para textos destacados */
@@ -58,6 +63,14 @@ ul, ol, li {
     padding: 0;
 }
 
+html.dark-mode {
+    --color-primary: var(--color-primary-oscuro);
+    --color-secondary: var(--color-secondary-oscuro);
+    --color-background: var(--color-background-oscuro);
+    --color-border: var(--color-border-oscuro);
+    --box-shadow: var(--box-shadow-oscuro);
+}
+
 /* Header */
 .header {
     display: flex;
@@ -88,9 +101,27 @@ ul, ol, li {
 }
 
 .header__nav-link {
-    font-weight: var(--font-weight-bold);
-    padding: 0.5rem 1rem;
+    /* Reset estilos nativos del botón */
+    background: none;
+    border: none;
+    cursor: pointer;
+    font: inherit;
+    
+    /* Mismo estilo que los enlaces */
+    color: inherit;
+    padding: 0.5rem 1rem; /* 8px 16px */
+    transition: all 0.3s ease-in-out; /* 300ms */
+    display: flex;
+    align-items: center;
+    height: 100%;
 }
+
+.header__nav-link:hover {
+    color: var(--color-hover);
+    transform: scale(1.05);
+    text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1); /* 2px ≈ 0.125rem */
+}
+
 
 /* Main: Novedades */
 .novedades {
