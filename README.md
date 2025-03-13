@@ -57,8 +57,61 @@ Con media queries, puedes adaptar el diseño a dispositivos móviles, tablets o 
 ```
 @media (max-width: 768px) { 
   .menu { display: none; } 
-} 
+}
 ```
+---
+## 1. Justificación del Uso de JavaScript ES6+  
+*(Criterio 3.a y 3.b)*  
+
+### 1.1 Características Modernas  
+- **`let`/`const`**:  
+  - `const` para elementos estáticos del DOM (selectores).  
+  - `let` para estados dinámicos, como el contador de elementos o la visibilidad de componentes.  
+
+- **Funciones Flecha**:  
+  - Utilizadas en manejadores de eventos y funciones de callback para mantener un código más conciso y legible.  
+
+- **Template Literals**:  
+  - Empleados para generar mensajes dinámicos y contenido HTML de manera eficiente.  
+
+- **Desestructuración**:  
+  - Simplifica el acceso a propiedades de objetos, como los elementos de un formulario.  
+
+### 1.2 Ventajas Técnicas  
+- Mejora la legibilidad y mantenibilidad del código.  
+- Previene errores comunes con el uso de `'use strict'`.  
+
+---
+
+## 2. Manipulación del DOM  
+*(Criterios 3.c, 3.d, 3.e, 3.f)*  
+
+### 2.1 Selección de Elementos  
+- **Métodos Utilizados**:  
+  - `getElementById` para acceder a elementos únicos.  
+  - `querySelector` y `querySelectorAll` para seleccionar elementos específicos o colecciones.  
+
+### 2.2 Dinamismo de Contenido  
+- **Creación de Elementos**:  
+  - Uso de `createElement` para generar nuevos nodos, como elementos de lista o tarjetas.  
+  - Inserción en el DOM con `appendChild`.  
+
+- **Actualizaciones**:  
+  - Modificación de textos con `textContent`.  
+  - Cambio de atributos con `setAttribute`.  
+
+### 2.3 Gestión de Estilos  
+- **Modificación de Clases**:  
+  - Alternancia de clases con `classList.toggle()` para cambiar temas visuales.  
+  - Adición o eliminación de clases con `classList.add` y `classList.remove`.  
+
+- **Estilos Directos**:  
+  - Actualización de propiedades específicas mediante `style.property`.  
+
+### 2.4 Eliminación de Elementos  
+- **Eliminación Segura**:  
+  - Uso de `remove()` para eliminar nodos individuales.  
+  - Verificación de existencia previa antes de eliminar. 
 Mantenibilidad: <br> 
 Cambiar el diseño de un sitio completo es más fácil si los estilos están centralizados en un archivo .css, evitando modificar cada página HTML. <br>
 
