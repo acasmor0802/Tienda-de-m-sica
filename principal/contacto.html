@@ -16,6 +16,7 @@
                 <img src="assets/logo-modified.png" alt="Logo de Ksic" class="header__logo-img">
                 <h1 class="header__logo-name">Ksic</h1>
             </a>
+            <!-- Navegación principal -->
             <nav class="header__nav" aria-label="Navegación principal">
                 <ul class="header__nav-list">
                     <li class="header__nav-item">
@@ -29,6 +30,15 @@
                     </li>
                     <li class="header__nav-item">
                         <a href="contacto.html" class="header__nav-link">Contacto</a>
+                    </li>
+                    <li class="header__nav-item carrito-container">
+                        <button class="carrito__boton">
+                            🛒 <span class="carrito__contador">0</span>
+                        </button>
+                        <div class="carrito__contenido">
+                            <ul class="carrito__lista"></ul>
+                            <div class="carrito__total">0.00€</div>
+                        </div>
                     </li>
                 </ul>
             </nav>
@@ -173,5 +183,6 @@
                 </ul>
             </section>
         </footer>
+        <script src="js/scripts.js"></script>
     </body>
 </html>
