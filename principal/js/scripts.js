@@ -3,6 +3,24 @@ let miCarrito = JSON.parse(localStorage.getItem('miCarrito')) || []; // Recupera
 const listaCarrito = document.querySelector('.carrito__lista'); // Contenedor de la lista de productos del carrito
 const contador = document.querySelector('.carrito__contador'); // Elemento que muestra el número de productos en el carrito
 const total = document.querySelector('.carrito__total'); // Elemento que muestra el total del carrito
+const carritoContainer = document.querySelector('.carrito-container');
+
+
+// Al hacer clic en el botón del carrito
+carritoContainer.querySelector('.carrito__boton').addEventListener('click', function() {
+    // Verificar si la lista del carrito está visible
+    if (listaCarrito.classList.contains('carrito__lista--visible')) {
+        // Si está visible, ocultarla
+        listaCarrito.classList.remove('carrito__lista--visible');
+        listaCarrito.classList.add('carrito__lista--oculta');
+    } else {
+        // Si está oculta, mostrarla
+        listaCarrito.classList.remove('carrito__lista--oculta');
+        listaCarrito.classList.add('carrito__lista--visible');
+    }
+});
+
+
 
 // Función para agregar un producto al carrito
 function agregarAlCarrito(boton) {
@@ -76,7 +94,7 @@ function vincularBotonesComprar() {
     });
 }
 
-// Añadir fotos personalizadas
+// Añadir y eliminar imagenes
 const seccionFotos = document.querySelector('.novedades__list');
 if (seccionFotos) {
     const botonFoto = document.createElement('button');
@@ -87,21 +105,30 @@ if (seccionFotos) {
     botonFoto.onclick = function() {
         const url = prompt('Pega la URL de tu foto:'); // Solicita la URL de la foto
         if (url) {
-            const nuevaFoto = `
-                <article class="novedades__item">
-                    <img src="${url}" class="novedades__image">
-                    <h3>Foto Personal</h3>
-                    <p>15.99€</p>
-                    <button class="boton-comprar">Comprar</button>
-                </article>
+            // Crear un nuevo artículo para la foto
+            const nuevaFoto = document.createElement('article');
+            nuevaFoto.classList.add('novedades__item');
+            nuevaFoto.innerHTML = `
+                <img src="${url}" class="novedades__image">
+                <h3>Foto Personal</h3>
+                <p>15.99€</p>
+                <button class="boton-comprar">Añadir al carrito</button>
+                <button class="boton-eliminar">Eliminar</button>
             `;
-            seccionFotos.innerHTML += nuevaFoto; // Agrega la nueva foto
+            seccionFotos.appendChild(nuevaFoto); // Agrega la nueva foto
 
             // Reasignar los eventos "comprar" para los productos nuevos
             vincularBotonesComprar();
+
+            // Vincular el botón de eliminar
+            const botonEliminar = nuevaFoto.querySelector('.boton-eliminar');
+            botonEliminar.onclick = function() {
+                nuevaFoto.remove(); // Elimina la foto del DOM
+            };
         }
     };
 }
+
 
 // Buscador de productos
 const buscador = document.createElement('input');
