@@ -1,216 +1,129 @@
-// ========== FUNCIONES GENERALES DEL DOM ========== //
-function seleccionar(elemento) {
-    return document.querySelector(elemento);
+// Variables principales
+let miCarrito = JSON.parse(localStorage.getItem('miCarrito')) || []; // Recupera el carrito desde localStorage, o crea uno vacío si no existe
+const listaCarrito = document.querySelector('.carrito__lista'); // Contenedor de la lista de productos del carrito
+const contador = document.querySelector('.carrito__contador'); // Elemento que muestra el número de productos en el carrito
+const total = document.querySelector('.carrito__total'); // Elemento que muestra el total del carrito
+
+// Función para agregar un producto al carrito
+function agregarAlCarrito(boton) {
+    const producto = boton.closest('.novedades__item, .productos__item'); // Encuentra el contenedor del producto
+    const nombre = producto.querySelector('h3').textContent; // Obtiene el nombre del producto
+    const precio = producto.querySelector('p').textContent; // Obtiene el precio del producto
+
+    miCarrito.push({ nombre: nombre, precio: precio }); // Añade el producto al carrito
+    guardarCarrito(); // Guarda el carrito en localStorage
+    actualizarCarrito(); // Actualiza la vista del carrito
 }
 
-function seleccionarTodos(elemento) {
-    return document.querySelectorAll(elemento);
+// Función para eliminar un producto del carrito
+function eliminarDelCarrito(posicion) {
+    miCarrito.splice(posicion, 1); // Elimina el producto del carrito
+    guardarCarrito(); // Guarda el carrito actualizado
+    actualizarCarrito(); // Actualiza la vista del carrito
 }
 
-// ========== GALERÍA INTERACTIVA ========== //
-function inicializarGaleria() {
-    var contenedorGaleria = seleccionar('.novedades__list');
-    var botonAgregar = document.createElement('button');
-    
-    if (contenedorGaleria == null) return;
-    
-    botonAgregar.textContent = 'Añadir foto personalizada';
-    botonAgregar.style.margin = '1rem';
-    
-    botonAgregar.onclick = function() {
-        var url = prompt('Introduce la URL de la imagen:');
-        if (url) {
-            var producto = document.createElement('article');
-            producto.className = 'novedades__item';
-            producto.innerHTML = `
-                <img src="${url}" class="novedades__image">
-                <h3 class="novedades__name">Foto personalizada</h3>
-                <p class="novedades__description">15.99€</p>
-                <button class="boton-comprar">Añadir al carrito</button>
+// Función para guardar el carrito en localStorage
+function guardarCarrito() {
+    localStorage.setItem('miCarrito', JSON.stringify(miCarrito)); // Guarda el carrito en localStorage
+}
+
+// Función para actualizar la vista del carrito
+function actualizarCarrito() {
+    if (listaCarrito) {
+        listaCarrito.innerHTML = ''; // Limpia la lista de productos del carrito
+        let sumaTotal = 0; // Variable para acumular el total del carrito
+
+        for (let i = 0; i < miCarrito.length; i++) {
+            const item = `
+                <li class="carrito__item">
+                    <span>${miCarrito[i].nombre}</span>
+                    <span>${miCarrito[i].precio}</span>
+                    <button onclick="eliminarDelCarrito(${i})">X</button>
+                </li>
             `;
-            
-            producto.querySelector('.boton-comprar').onclick = function() {
-                var nombre = this.parentNode.querySelector('.novedades__name').textContent;
-                var precio = this.parentNode.querySelector('.novedades__description').textContent;
-                carrito.agregarProducto(nombre, precio);
-            };
-            
-            contenedorGaleria.appendChild(producto);
+            listaCarrito.innerHTML += item; // Agrega el producto a la lista
+            sumaTotal += parseFloat(miCarrito[i].precio.replace('€', '')); // Suma el precio al total
         }
-    };
-    
-    contenedorGaleria.parentNode.insertBefore(botonAgregar, contenedorGaleria.nextSibling);
-}
 
-// ========== VALIDACIÓN DE FORMULARIO ========== //
-function esNumero(valor) {
-    try {
-        var num = parseInt(valor);
-        return !isNaN(num);
-    } catch (e) {
-        return false;
+        contador.textContent = miCarrito.length; // Muestra la cantidad de productos
+        total.textContent = sumaTotal.toFixed(2) + '€'; // Muestra el total del carrito
     }
 }
 
-function validarFormulario() {
-    var formulario = seleccionar('.form');
-    if (formulario == null) return;
-    
-    formulario.onsubmit = function() {
-        var telefono = seleccionar('#telefono').value;
-        var correo = seleccionar('#correo').value;
-        var mensajeError = seleccionar('#mensaje-error') || document.createElement('div');
-        var error = '';
-        
-        if (telefono.length != 9 || !esNumero(telefono)) {
-            error = 'El teléfono debe tener 9 números.';
-        }
-        
-        if (correo.indexOf('@') == -1 || correo.indexOf('.') == -1) {
-            error += ' Ingresa un correo válido.';
-        }
-        
-        if (error) {
-            mensajeError.id = 'mensaje-error';
-            mensajeError.textContent = error;
-            mensajeError.style.color = 'red';
-            formulario.appendChild(mensajeError);
-            
-            setTimeout(function() {
-                mensajeError.remove();
-            }, 3000);
-            return false;
-        }
-        return true;
-    };
-}
+// Al cargar la página
+window.addEventListener('load', function() {
+    actualizarCarrito(); // Actualiza la vista del carrito desde localStorage
 
-// ========== FILTRO DE PRODUCTOS ========== //
-function inicializarFiltro() {
-    var inputBusqueda = document.createElement('input');
-    inputBusqueda.placeholder = 'Buscar productos...';
-    inputBusqueda.style.margin = '1rem';
-    
-    var seccionProductos = seleccionar('.productos');
-    if (seccionProductos == null) return;
-    
-    seccionProductos.insertBefore(inputBusqueda, seccionProductos.firstChild);
-    
-    var todosLosProductos = seleccionarTodos('.productos__item');
-    
-    inputBusqueda.oninput = function() {
-        var busqueda = this.value.toLowerCase();
-        
-        for (var i = 0; i < todosLosProductos.length; i++) {
-            var nombre = todosLosProductos[i].querySelector('.productos__name').textContent.toLowerCase();
-            todosLosProductos[i].style.display = nombre.includes(busqueda) ? 'block' : 'none';
-        }
-    };
-}
+    // Vincula los botones "comprar" de los productos ya existentes
+    vincularBotonesComprar();  // Llamada para asignar los eventos a los botones
 
-// ========== CARRITO DE COMPRAS CON LOCALSTORAGE ========== //
-var carrito = {
-    contador: seleccionar('.carrito__contador'),
-    lista: seleccionar('.carrito__lista'),
-    total: seleccionar('.carrito__total'),
-    
-    inicializar: function() {
-        this.cargarDesdeLocalStorage();
-        this.actualizar();
-    },
-    
-    agregarProducto: function(nombre, precio) {
-        var item = {
-            nombre: nombre,
-            precio: precio,
-            timestamp: Date.now()
-        };
-        
-        this.lista.appendChild(this.crearItemDOM(item));
-        this.guardarEnLocalStorage();
-        this.actualizar();
-    },
-    
-    crearItemDOM: function(item) {
-        var elemento = document.createElement('li');
-        elemento.className = 'carrito__item';
-        elemento.innerHTML = `
-            <div class="carrito__info">
-                <span class="carrito__nombre">${item.nombre}</span>
-                <span class="carrito__precio">${item.precio}</span>
-            </div>
-            <button class="carrito__eliminar">🗑️</button>
-        `;
-        
-        elemento.querySelector('.carrito__eliminar').onclick = () => {
-            elemento.remove();
-            this.guardarEnLocalStorage();
-            this.actualizar();
-        };
-        
-        return elemento;
-    },
-    
-    actualizar: function() {
-        this.contador.textContent = this.lista.children.length;
-        this.actualizarTotal();
-    },
-    
-    actualizarTotal: function() {
-        var precios = this.lista.querySelectorAll('.carrito__precio');
-        var total = 0;
-        
-        for (var i = 0; i < precios.length; i++) {
-            var precioTexto = precios[i].textContent.replace('€', '').trim();
-            var precioNumero = parseFloat(precioTexto.replace(',', '.'));
-            if (!isNaN(precioNumero)) total += precioNumero;
+    // Escuchar cambios en localStorage entre pestañas
+    window.addEventListener('storage', function(e) {
+        if (e.key === 'miCarrito') { // Si el carrito se actualiza en otra pestaña
+            miCarrito = JSON.parse(localStorage.getItem('miCarrito')) || []; // Actualiza el carrito
+            actualizarCarrito(); // Refresca la vista
         }
-        
-        this.total.textContent = total.toFixed(2) + '€';
-    },
-    
-    guardarEnLocalStorage: function() {
-        var items = [];
-        this.lista.querySelectorAll('.carrito__item').forEach(item => {
-            items.push({
-                nombre: item.querySelector('.carrito__nombre').textContent,
-                precio: item.querySelector('.carrito__precio').textContent
-            });
+    });
+});
+
+// Función para vincular los botones "comprar"
+function vincularBotonesComprar() {
+    const botones = document.querySelectorAll('.boton-comprar');
+    botones.forEach(function(boton) {
+        boton.addEventListener('click', function() {
+            agregarAlCarrito(this); // Agrega el producto al carrito cuando se hace clic en el botón
         });
-        localStorage.setItem('carrito', JSON.stringify(items));
-    },
-    
-    cargarDesdeLocalStorage: function() {
-        var guardado = localStorage.getItem('carrito');
-        if (guardado) {
-            JSON.parse(guardado).forEach(item => {
-                this.lista.appendChild(this.crearItemDOM(item));
-            });
+    });
+}
+
+// Añadir fotos personalizadas
+const seccionFotos = document.querySelector('.novedades__list');
+if (seccionFotos) {
+    const botonFoto = document.createElement('button');
+    botonFoto.textContent = 'Añadir Foto';
+    botonFoto.style.margin = '10px';
+    seccionFotos.after(botonFoto); // Coloca el botón después de la lista de novedades
+
+    botonFoto.onclick = function() {
+        const url = prompt('Pega la URL de tu foto:'); // Solicita la URL de la foto
+        if (url) {
+            const nuevaFoto = `
+                <article class="novedades__item">
+                    <img src="${url}" class="novedades__image">
+                    <h3>Foto Personal</h3>
+                    <p>15.99€</p>
+                    <button class="boton-comprar">Comprar</button>
+                </article>
+            `;
+            seccionFotos.innerHTML += nuevaFoto; // Agrega la nueva foto
+
+            // Reasignar los eventos "comprar" para los productos nuevos
+            vincularBotonesComprar();
         }
+    };
+}
+
+// Buscador de productos
+const buscador = document.createElement('input');
+buscador.placeholder = 'Buscar productos...';
+document.querySelector('.productos').prepend(buscador); // Coloca el input de búsqueda al inicio de la lista de productos
+
+buscador.oninput = function() {
+    const texto = this.value.toLowerCase(); // Convierte la búsqueda a minúsculas
+    const productos = document.querySelectorAll('.productos__item'); // Obtiene todos los productos
+
+    for (let i = 0; i < productos.length; i++) {
+        const nombre = productos[i].querySelector('.productos__name').textContent.toLowerCase();
+        productos[i].style.display = nombre.includes(texto) ? 'block' : 'none'; // Muestra o esconde el producto según la búsqueda
     }
 };
 
-// ========== INICIALIZAR BOTONES ========== //
-function inicializarBotonesComprar() {
-    var botones = seleccionarTodos('.boton-comprar');
-    
-    for (var i = 0; i < botones.length; i++) {
-        botones[i].onclick = function() {
-            var producto = this.parentNode;
-            var nombre = producto.querySelector('.novedades__name, .productos__name').textContent;
-            var precio = producto.querySelector('.novedades__description, .productos__description').textContent;
-            carrito.agregarProducto(nombre, precio);
-        };
-    }
-}
+// Cuando el input obtiene el foco (focus)
+buscador.addEventListener('focus', function() {
+    buscador.style.boxShadow = '0 0 8px rgba(0, 123, 255, 0.25)'; // Sombra azul
+});
 
-// ========== INICIALIZAR TODO ========== //
-function iniciar() {
-    inicializarGaleria();
-    inicializarBotonesComprar();
-    validarFormulario();
-    inicializarFiltro();
-    carrito.inicializar();
-}
-
-document.addEventListener('DOMContentLoaded', iniciar);
+// Cuando el input pierde el foco (blur)
+buscador.addEventListener('blur', function() {
+    buscador.style.boxShadow = ''; // Restaura la sombra original (sin sombra)
+});

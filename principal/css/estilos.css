@@ -116,17 +116,13 @@ ul, ol, li {
 .carrito__lista {
     position: absolute;
     right: 0;
-    background: white;
+    background: rgb(247, 243, 243);
     width: 300px;
     padding: 1rem;
     box-shadow: var(--box-shadow-soft);
     display: none;
 }
 
-.carrito__precio {
-    color: var(--color-secondary);
-    margin-left: 1rem;
-}
 
 .carrito-container:hover .carrito__lista {
     display: block;
@@ -144,7 +140,6 @@ ul, ol, li {
     background: none;
     border: none;
     cursor: pointer;
-    color: #ff4444;
     margin-left: 1rem;
 }
 
@@ -162,9 +157,7 @@ ul, ol, li {
     margin-right: 1rem;
 }
 
-.carrito__contenido {
-    position: relative;
-}
+
 
 /* Main: Novedades */
 .novedades {
@@ -452,7 +445,7 @@ ul, ol, li {
     margin: 0.5rem 0;
 }
 
-.contact-fisico-section__map {
+.contact-fiFsico-section__map {
     width: 50%;
 }
 
